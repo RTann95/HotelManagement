@@ -14,10 +14,22 @@ I want to also utilize CockroachDB for data storage and have each separate conta
 (probably Istio because Envoy sidecars are dope).
 
 At the moment, the repo is clearly designed for just the Springboot application, but I will eventually separate each
-part into separate top-level folders (frontend/, server/, etc)
+part into separate top-level folders (frontend/, server/, etc).
+
+## Local (designed for just the server at the moment)
+
+1. Run `./start.sh` to compile and run the server.
+
+## Local Docker
+
+1. Run `docker-compose up` to build and run the entire project.
 
 ## Kubernetes
 
-### Running the Dashboard
+### Dashboard
 
-`kubectl proxy` and it's available at http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
+1. (If this is the first time) run
+`kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml`
+to get the Dashboard
+
+2. Run `kubectl proxy` and it'll be available [here](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/).
