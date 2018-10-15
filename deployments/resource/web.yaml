@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotel-management-web
+  namespace: hotel-management
+  labels:
+    app: hotel-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hotel-management
+  template:
+    metadata:
+      labels:
+        app: hotel-management
+    spec:
+      containers:
+        - name: web
+          image: hotelmanagement_web:latest
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Never
