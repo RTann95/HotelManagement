@@ -23,7 +23,24 @@ repositories {
 }
 
 dependencies {
+    // HTTP Endpoints.
     compile "org.springframework.boot:spring-boot-starter-web:2.0.5.RELEASE"
     compile "org.springframework.boot:spring-boot-starter-actuator:2.0.5.RELEASE"
+
+    // Data Storage.
+    compile "org.springframework.boot:spring-boot-starter-data-jpa:2.0.5.RELEASE"
+    compile "org.postgresql:postgresql:42.2.5"
+
+    // Database Migration.
+    compile "org.flywaydb:flyway-core:5.2.0"
+
+    // Metrics.
     //compile "io.micrometer:micrometer-core:1.0.6"
+
+    // Utilities.
+    compile "com.google.guava:guava:26.0-jre"
+}
+
+bootRun {
+    systemProperties = System.properties
 }

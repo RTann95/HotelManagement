@@ -1,0 +1,14 @@
+{
+  "roomNumber": 2,
+  "numNights": 3,
+  "guests": [
+    {
+      "firstName": "John",
+      "lastName": "Odejar"
+    },
+    {
+      "firstName": "Hunter",
+      "lastName": "Goldstein"
+    }
+  ]
+}

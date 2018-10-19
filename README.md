@@ -4,7 +4,7 @@
 
 I got bored, so I am using technology. The idea is to do something simple with cool tech.
 
-This project is to be a monorepo application, and this repo will contain all parts (frontend, backend, etc), which
+This project is to be a mono-repo application, and this repo will contain all parts (frontend, backend, etc), which
 will be deployed locally via docker-compose and deployed to "production" (docker-for-mac Kuberneters node) via
 Kubernetes.
 
@@ -18,7 +18,15 @@ part into separate top-level folders (frontend/, server/, etc).
 
 ## Local (designed for just the server at the moment)
 
-1. Run `./start.sh` to compile and run the server.
+1. Run `cockroach start --insecure --host=localhost` to start a local CockroachDB cluster
+(or `brew services start cockroach --insecure --host=localhost` to run it in the background
+(just remember to `brew services stop cockroach` when you're done)).
+2. Create the Database via `cockroach sql --insecure` then `> CREATE DATABASE hotelmanagement;`
+3. Run `./start.sh` to compile and run the server.
+
+You can see a CockroachDB Dashboard hosted [here](http://localhost:8080).
+
+To do manual CockroachDB queries, run `cockroach sql --insecure -d hotelmanagement`.
 
 ## Local Docker
 
@@ -33,3 +41,21 @@ part into separate top-level folders (frontend/, server/, etc).
 to get the Dashboard
 
 2. Run `kubectl proxy` and it'll be available [here](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/).
+
+# Next Steps
+
+1. Now that Cockroach is running on Mac, time to get it on Docker
+2. Get it to run on Kubernetes
+3. Proper validation
+4. Metrics
+5. Unit tests
+6. CI
+7. Look into other build systems (ones that make more sense than gradle but can also support spotbugs and spotless)
+7. Cleanup/TODOs
+8. Add more stuff
+9. Look into CD (maybe Spinnaker can do CD on localhost?)
+
+# TODO
+
+1. Figure out how to set up the database automatically on startup
+2. Find a better way to be allowed to name my own columns.

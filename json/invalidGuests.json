@@ -1,0 +1,10 @@
+{
+  "roomNumber": 2,
+  "numNights": 3,
+  "guests": [
+    {
+      "fistName": "John",
+      "lastName": "Odejar"
+    }
+  ]
+}
