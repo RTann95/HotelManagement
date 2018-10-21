@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "reservations")
+@Table(schema = "hotelmanagement", name = "reservations")
 public class Reservation {
 
     private static final String ID = "id";
@@ -37,7 +37,7 @@ public class Reservation {
     // TODO: Validate the elements as well via a custom validator.
     @NotEmpty
     @ElementCollection(targetClass = Guest.class)
-    @CollectionTable(name = "reservation_guests", joinColumns = @JoinColumn(name = "reservation_id"))
+    @CollectionTable(schema = "hotelmanagement", name = "reservation_guests", joinColumns = @JoinColumn(name = "reservation_id"))
     @AttributeOverrides({
             @AttributeOverride(name = "firstName", column = @Column(name = "first_name")),
             @AttributeOverride(name = "lastName", column = @Column(name = "last_name"))

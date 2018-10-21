@@ -21,8 +21,7 @@ part into separate top-level folders (frontend/, server/, etc).
 1. Run `cockroach start --insecure --host=localhost` to start a local CockroachDB cluster
 (or `brew services start cockroach --insecure --host=localhost` to run it in the background
 (just remember to `brew services stop cockroach` when you're done)).
-2. Create the Database via `cockroach sql --insecure` then `> CREATE DATABASE hotelmanagement;`
-3. Run `./start.sh` to compile and run the server.
+2. Run `./start.sh` to compile and run the server.
 
 You can see a CockroachDB Dashboard hosted [here](http://localhost:8080).
 
@@ -31,6 +30,9 @@ To do manual CockroachDB queries, run `cockroach sql --insecure -d hotelmanageme
 ## Local Docker
 
 1. Run `docker-compose up` to build and run the entire project.
+2. Run `docker-compose down` when done (**be sure to use `docker-compose` commands because it's stupid**).
+
+You can use the same link as above to see the Cockroach Dashboard.
 
 ## Kubernetes
 
@@ -44,7 +46,7 @@ to get the Dashboard
 
 # Next Steps
 
-1. Now that Cockroach is running on Mac, time to get it on Docker
+1. ~~Now that Cockroach is running on Mac, time to get it on Docker~~
 2. Get it to run on Kubernetes
 3. Proper validation
 4. Metrics

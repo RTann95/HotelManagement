@@ -2,7 +2,28 @@ version: "3"
 
 services:
   web:
-    container_name: "web"
+    container_name: web
     build: .
+    networks:
+      - appnet
     ports:
-      - "8080:8080"
+      - 9000:9000
+    depends_on:
+      - db
+  db:
+    container_name: roach
+    image: cockroachdb/cockroach:v2.0.6
+    hostname: roach
+    command: ["start", "--insecure"]
+    networks:
+      - appnet
+      - roachnet
+    ports:
+      - 26257:26257
+      - 8080:8080
+    volumes:
+      - ${PWD}/cockroach-data/roach0:/cockroach/cockroach-data
+
+networks:
+  appnet:
+  roachnet:

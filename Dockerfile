@@ -6,4 +6,4 @@ RUN apk add curl
 COPY build/libs/hotelmanagement-1.0-SNAPSHOT.jar .
 COPY run.sh .
 
-CMD ["/run.sh"]
+CMD exec /run.sh dev-docker
