@@ -16,7 +16,9 @@ I want to also utilize CockroachDB for data storage and have each separate conta
 At the moment, the repo is clearly designed for just the Springboot application, but I will eventually separate each
 part into separate top-level folders (frontend/, server/, etc).
 
-## Local (designed for just the server at the moment)
+## Local
+
+The following steps show how to test the server locally (on Mac) with a single Cockroach node.
 
 1. Run `cockroach start --insecure --host=localhost` to start a local CockroachDB cluster
 (or `brew services start cockroach --insecure --host=localhost` to run it in the background
@@ -28,6 +30,13 @@ You can see a CockroachDB Dashboard hosted [here](http://localhost:8080).
 To do manual CockroachDB queries, run `cockroach sql --insecure -d hotelmanagement`.
 
 ## Local Docker
+
+The following steps show how to test the server locally on Docker with 3 nodes of Cockroach.
+
+**Note**: This setup assumes roach0 will always be up, as the server can only communicate with that node.
+Also, keep in mind Cockroach requires the liveness of a majority (in this case 2) nodes to work properly.
+So, feel free to bring nodes 1 and 2 up and down as you please, but do not kill node 0 nor kill more than
+1 node at a time (of course this is just testing, so feel free to do whatever, though).
 
 1. Run `docker-compose up` to build and run the entire project.
 2. Run `docker-compose down` when done (**be sure to use `docker-compose` commands because it's stupid**).
