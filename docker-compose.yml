@@ -9,12 +9,14 @@ services:
     ports:
       - 9000:9000
     depends_on:
-      - db
-  db:
-    container_name: roach
+      - roach0
+      - roach1
+      - roach2
+  roach0:
+    container_name: roach0
     image: cockroachdb/cockroach:v2.0.6
-    hostname: roach
-    command: ["start", "--insecure"]
+    hostname: roach0
+    command: start --insecure
     networks:
       - appnet
       - roachnet
@@ -23,6 +25,28 @@ services:
       - 8080:8080
     volumes:
       - ${PWD}/cockroach-data/roach0:/cockroach/cockroach-data
+  roach1:
+    container_name: roach1
+    image: cockroachdb/cockroach:v2.0.6
+    hostname: roach1
+    command: start --insecure --join=roach0
+    networks:
+      - roachnet
+    volumes:
+      - ${PWD}/cockroach-data/roach1:/cockroach/cockroach-data
+    depends_on:
+      - roach0
+  roach2:
+    container_name: roach2
+    image: cockroachdb/cockroach:v2.0.6
+    hostname: roach2
+    command: start --insecure --join=roach0
+    networks:
+      - roachnet
+    volumes:
+      - ${PWD}/cockroach-data/roach2:/cockroach/cockroach-data
+    depends_on:
+      - roach0
 
 networks:
   appnet:
