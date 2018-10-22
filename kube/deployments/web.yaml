@@ -1,3 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hotel-management-web-public
+  namespace: hotel-management
+  labels:
+    app: hotel-management
+spec:
+  selector:
+    app: hotel-management
+  type: NodePort
+  ports:
+  - port: 9000
+    targetPort: 9000
+    name: http
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,6 +34,8 @@ spec:
       containers:
         - name: web
           image: hotelmanagement_web:latest
+          command: ["/bin/sh"]
+          args: ["-c", "exec /run.sh prod"]
           ports:
-            - containerPort: 8080
+            - containerPort: 9000
           imagePullPolicy: Never
