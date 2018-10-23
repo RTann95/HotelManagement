@@ -1,9 +1,9 @@
 # Taken from https://github.com/cockroachdb/cockroach. Downloaded to ensure the correct version.
-# Updated the namespace.
+# Updated the namespace and name.
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: cluster-init
+  name: cockroach-init
   namespace: hotel-management
   labels:
     app: cockroachdb
@@ -11,7 +11,7 @@ spec:
   template:
     spec:
       containers:
-      - name: cluster-init
+      - name: cockroach-init
         image: cockroachdb/cockroach:v2.0.6
         imagePullPolicy: IfNotPresent
         command:

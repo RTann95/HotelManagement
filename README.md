@@ -54,7 +54,7 @@ to get the Kubernetes Dashboard if this is the first time. Otherwise, skip to st
 2. Run `kubectl proxy` and it'll be available [here](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/).
 3. Run `kubectl create namespace hotel-management` if this is the first time. Otherwise, skip to step 4.
 4. Run `kubectl create -f kube/statefulsets/cockroachdb.yaml` to start the CockroachDB stateful set.
-5. Run `kubcetl create -f kube/jobs/cockroach-init.yaml` to initialize the CockroachDB cluster.
+5. Run `kubectl create -f kube/jobs/cockroach-init.yaml` to initialize the CockroachDB cluster.
 6. Run `./compile.sh` to compile the server.
 7. Run `docker-compose build web` to build the Docker image.
 8. Run `kubectl create -f kube/deployments/web.yaml` to create the web server deployment.
@@ -82,5 +82,6 @@ which defeats the purpose of this.
 
 # TODO
 
-1. Figure out how to set up the database automatically on startup
+1. ~~Figure out how to set up the database automatically on startup~~
 2. Find a better way to be allowed to name my own columns.
+3. Deploy all parts of the app without so many kubectl commands.
