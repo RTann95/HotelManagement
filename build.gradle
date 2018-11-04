@@ -7,6 +7,10 @@ buildscript {
     }
 }
 
+plugins {
+    id "com.github.spotbugs" version "1.6.5"
+}
+
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
@@ -20,6 +24,23 @@ targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
+}
+
+spotbugs {
+    toolVersion = "3.1.1"
+    sourceSets = [sourceSets.main]
+    ignoreFailures = true
+    reportsDir = file("$project.buildDir/spotbugsReports")
+    effort = "max"
+    reportLevel = "low"
+    excludeFilter = file("$rootProject.projectDir/spotbugs/excludeFilter.xml")
+}
+
+tasks.withType(com.github.spotbugs.SpotBugsTask) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
 }
 
 dependencies {
