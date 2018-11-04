@@ -16,6 +16,9 @@ I want to also utilize CockroachDB for data storage and have each separate conta
 At the moment, the repo is clearly designed for just the Springboot application, but I will eventually separate each
 part into separate top-level folders (frontend/, server/, etc).
 
+**Note**: I'm aware of the speed (or lack thereof). If the idea of the project were to create a small application like this,
+then using a lot of this tech would just be overkill. However, the point is to use the tech; the app itself isn't as important.
+
 ## Local
 
 The following steps show how to test the server locally (on Mac) with a single Cockroach node.
