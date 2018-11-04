@@ -9,12 +9,11 @@ buildscript {
 
 plugins {
     id "com.github.spotbugs" version "1.6.5"
+    id "java"
+    id "idea"
+    id "org.springframework.boot" version "2.0.5.RELEASE"
+    id "io.spring.dependency-management" version "1.0.6.RELEASE"
 }
-
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
 
 group 'com.hotel'
 version '1.0-SNAPSHOT'
