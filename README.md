@@ -61,8 +61,7 @@ to get the Kubernetes Dashboard if this is the first time. Otherwise, skip to st
 9. Run `kubectl get services hotel-management-web-public -n hotel-management` to fine the assigned node port (the port on the right side of the colon).
 10. Curl the server via `localhost:<node_port>`.
 11. Run `kubectl port-forward cockroachdb-0 8080 -n hotel-management` to be able to see the Cockroach Dashboard via localhost.
-12. Cleanup resources via `kubectl delete <resource>s --all -n hotel-management` for each resource (or from the Kubernetes dashboard).
-13. Cleanup the persistent volume claims via the dashboard.
+12. Run `kubectl delete namespaces hotel-management` to cleanup everything.
 
 **Note**: I probably could have just done port forwarding to curl the server, but then I wouldn't have learned about services,
 which defeats the purpose of this.
@@ -72,16 +71,16 @@ which defeats the purpose of this.
 1. ~~Now that Cockroach is running on Mac, time to get it on Docker~~
 2. ~~Get it to run on Kubernetes~~
 3. Metrics
-4. Proper validation
-5. Unit tests
-6. CI
-7. Look into other build systems (ones that make more sense than gradle but can also support spotbugs and spotless)
-7. Cleanup/TODOs
-8. Add more stuff
-9. Look into CD (maybe Spinnaker can do CD on localhost?)
+4. Look into other build systems (ones that make more sense than gradle but can also support spotbugs and spotless)
+5. Play around with the namespaces and look into Istio
+6. Proper validation
+7. Unit tests
+8. CI
+9. Cleanup/TODOs
+10. Add more stuff
+11. Look into CD (maybe Spinnaker can do CD on localhost?)
 
 # TODO
 
-1. ~~Figure out how to set up the database automatically on startup~~
-2. Find a better way to be allowed to name my own columns.
-3. Deploy all parts of the app without so many kubectl commands.
+* Find a better way to be allowed to name my own columns.
+* Deploy all parts of the app without so many kubectl commands.
