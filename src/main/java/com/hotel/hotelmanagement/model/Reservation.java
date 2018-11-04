@@ -56,6 +56,10 @@ public class Reservation {
         this.numNights = numNights;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public Integer getRoomNumber() {
         return roomNumber;
     }
