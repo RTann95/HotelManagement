@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/RTann95/HotelManagement.svg?style=svg)](https://circleci.com/gh/RTann95/HotelManagement)
+
 # Hotel Management
 
 ## About
