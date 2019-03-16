@@ -63,21 +63,25 @@ You can use the same link as above to see the Cockroach Dashboard.
 ## Kubernetes
 
 1. Run
-`kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml`
-to get the Kubernetes Dashboard if this is the first time. Otherwise, skip to step 2.
-2. Run `kubectl proxy` and it'll be available [here](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/).
-3. Run `kubectl create namespace hotel-management` if this is the first time. Otherwise, skip to step 4.
-4. Run `kubectl create -f kube/statefulsets/cockroachdb.yaml` to start the CockroachDB stateful set.
-5. Run `kubectl create -f kube/jobs/cockroach-init.yaml` to initialize the CockroachDB cluster.
-6. Run `./compile.sh` to compile the server.
-7. Run `docker-compose build web` to build the Docker image.
-8. Run `kubectl create -f kube/deployments/web.yaml` to create the web server deployment.
-9. Run `kubectl get services hotel-management-web-public -n hotel-management` to fine the assigned node port (the port on the right side of the colon).
-10. Curl the server via `localhost:<node_port>`.
-11. Run `kubectl port-forward cockroachdb-0 8080 -n hotel-management` to be able to see the Cockroach Dashboard via localhost.
-12. Run `kubectl delete namespaces hotel-management` to cleanup everything.
+`kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml`
+to get the Kubernetes Dashboard.
+2. Run `kubectl apply -f kube/users/admin.yaml` to create the admin user.
+3. Run `kubectl apply -f kube/users/admin-role.yaml` to bind the admin user to the admin role.
+4. Run `kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin | awk '{print $1}')`
+to get the admin's bearer token to log in.
+5. Run `kubectl proxy` and it'll be available [here](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/).
+6. Run `kubectl create namespace hotel-management` if this is the first time.
+7. Run `kubectl apply -f kube/cockroach/cockroachdb.yaml` to start the CockroachDB stateful set.
+8. Run `kubectl apply -f kube/cockroach/cockroach-init.yaml` to initialize the CockroachDB cluster.
+9. Run `./compile.sh` to compile the server.
+10. Run `docker-compose build web` to build the Docker image.
+11. Run `kubectl apply -f kube/web/web.yaml` to create the web server deployment.
+12. Run `kubectl get services hotel-management-web-public -n hotel-management` to fine the assigned node port (the port on the right side of the colon).
+13. Curl the server via `localhost:<node_port>/ping`.
+14. Run `kubectl port-forward cockroachdb-0 8080 -n hotel-management` to be able to see the Cockroach Dashboard via localhost.
+15. Run `kubectl delete namespaces hotel-management` to cleanup everything.
 
-**Note**: I probably could have just done port forwarding to curl the server, but then I wouldn't have learned about services,
+**Note**: I probably could have just done port forwarding to curl the server, but then I would not have learned about services,
 which defeats the purpose of this.
 
 # Next Steps
@@ -96,5 +100,6 @@ which defeats the purpose of this.
 
 # TODO
 
+* Find a better way to log into the Dashboard.
 * Find a better way to be allowed to name my own columns.
 * Deploy all parts of the app without so many kubectl commands.

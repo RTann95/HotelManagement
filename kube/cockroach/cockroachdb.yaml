@@ -1,5 +1,6 @@
-# Taken from https://github.com/cockroachdb/cockroach. Downloaded to ensure the correct version.
-# Updated the namespace to ensure the web server and the DB can communicate.
+# Taken from https://github.com/cockroachdb/cockroach.
+# Updated the namespace to ensure the web server and the DB can communicate, added prometheus label for metrics,
+# and changed version.
 apiVersion: v1
 kind: Service
 metadata:
@@ -34,6 +35,7 @@ metadata:
   namespace: hotel-management
   labels:
     app: cockroachdb
+    prometheus: cockroachdb
   annotations:
     # Use this annotation in addition to the actual publishNotReadyAddresses
     # field below because the annotation will stop being respected soon but the
@@ -100,7 +102,7 @@ spec:
               topologyKey: kubernetes.io/hostname
       containers:
       - name: cockroachdb
-        image: cockroachdb/cockroach:v2.0.6
+        image: cockroachdb/cockroach:v2.1.5
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 26257
@@ -131,7 +133,7 @@ spec:
           - "-ecx"
           # The use of qualified `hostname -f` is crucial:
           # Other nodes aren't able to look up the unqualified hostname.
-          - "exec /cockroach/cockroach start --logtostderr --insecure --advertise-host $(hostname -f) --http-host 0.0.0.0 --join cockroachdb-0.cockroachdb,cockroachdb-1.cockroachdb,cockroachdb-2.cockroachdb --cache 25% --max-sql-memory 25%"
+          - "exec /cockroach/cockroach start --logtostderr --insecure --advertise-host $(hostname -f) --http-addr 0.0.0.0 --join cockroachdb-0.cockroachdb,cockroachdb-1.cockroachdb,cockroachdb-2.cockroachdb --cache 25% --max-sql-memory 25%"
       # No pre-stop hook is required, a SIGTERM plus some time is all that's
       # needed for graceful shutdown of a node.
       terminationGracePeriodSeconds: 60

@@ -1,4 +1,4 @@
-# Taken from https://github.com/cockroachdb/cockroach. Downloaded to ensure the correct version.
+# Taken from https://github.com/cockroachdb/cockroach.
 # Updated the namespace and name.
 apiVersion: batch/v1
 kind: Job
@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: cockroach-init
-        image: cockroachdb/cockroach:v2.0.6
+        image: cockroachdb/cockroach:v2.1.5
         imagePullPolicy: IfNotPresent
         command:
         - "/cockroach/cockroach"

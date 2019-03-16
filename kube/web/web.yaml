@@ -10,9 +10,9 @@ spec:
     app: hotel-management
   type: NodePort
   ports:
-  - port: 9000
-    targetPort: 9000
-    name: http
+    - port: 9000
+      targetPort: 9000
+      name: http
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -34,8 +34,11 @@ spec:
       containers:
         - name: web
           image: hotelmanagement_web:latest
-          command: ["/bin/sh"]
-          args: ["-c", "exec /run.sh prod"]
+          command:
+            # TODO: Change to /bin/sh when moving back to Alpine.
+            - "/bin/bash"
+            - "-ecx"
+            - "exec /run.sh prod"
           ports:
             - containerPort: 9000
           imagePullPolicy: Never
