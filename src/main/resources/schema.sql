@@ -1,7 +1,9 @@
 CREATE DATABASE IF NOT EXISTS hotelmanagement;
 
+CREATE SEQUENCE IF NOT EXISTS hotelmanagement.reservations_id_seq;
+
 CREATE TABLE IF NOT EXISTS hotelmanagement.reservations (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id INT PRIMARY KEY DEFAULT nextval('hotelmanagement.reservations_id_seq'),
     room_number INT4 NOT NULL,
     num_nights INT4 NOT NULL
 );
