@@ -1,4 +1,5 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+# Once Docker image is switched back to alpine, change the above to sh instead of bash.
 
 set -ex
 
