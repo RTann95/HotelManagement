@@ -15,7 +15,7 @@ services:
       - roach2
   roach0:
     container_name: roach0
-    image: cockroachdb/cockroach:v2.0.6
+    image: cockroachdb/cockroach:v2.1.5
     hostname: roach0
     command: start --insecure
     networks:
@@ -28,7 +28,7 @@ services:
       - ${PWD}/cockroach-data/roach0:/cockroach/cockroach-data
   roach1:
     container_name: roach1
-    image: cockroachdb/cockroach:v2.0.6
+    image: cockroachdb/cockroach:v2.1.5
     hostname: roach1
     command: start --insecure --join=roach0
     networks:
@@ -39,7 +39,7 @@ services:
       - roach0
   roach2:
     container_name: roach2
-    image: cockroachdb/cockroach:v2.0.6
+    image: cockroachdb/cockroach:v2.1.5
     hostname: roach2
     command: start --insecure --join=roach0
     networks:
