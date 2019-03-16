@@ -25,6 +25,13 @@ then using a lot of this tech would just be overkill. However, the point is to u
 
 ## Local
 
+### Dependencies
+
+* [Java 11](https://jdk.java.net/11/)
+* [CockroachDB](https://www.cockroachlabs.com/docs/stable/install-cockroachdb-mac.html)
+
+### Steps
+
 The following steps show how to test the server locally (on Mac) with a single Cockroach node.
 
 1. Run `cockroach start --insecure --host=localhost` to start a local CockroachDB cluster
