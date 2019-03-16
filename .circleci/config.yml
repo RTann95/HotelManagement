@@ -6,7 +6,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:8-jdk
+      - image: circleci/openjdk:11.0.2-jdk
     working_directory: ~/hotelmanagement
     steps:
       - checkout
@@ -14,14 +14,14 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "build.gradle" }}
             - v1-dependencies-
-      - run: ./gradlew dependencies
+      - run: ./gradlew clean build -x test
       - save_cache:
           paths:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle" }}
   test:
     docker:
-      - image: circleci/openjdk:8-jdk
+      - image: circleci/openjdk:11.0.2-jdk
     steps:
       - checkout
       - run: ./gradlew test
