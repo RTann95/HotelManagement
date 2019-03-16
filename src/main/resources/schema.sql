@@ -1,11 +1,7 @@
 CREATE DATABASE IF NOT EXISTS hotelmanagement;
 
--- TODO: This is only needed for Cockroach < 2.1.x
-CREATE SEQUENCE IF NOT EXISTS hotelmanagement.reservations_id_seq;
-
 CREATE TABLE IF NOT EXISTS hotelmanagement.reservations (
-    --id SERIAL PRIMARY KEY,
-    id INT PRIMARY KEY DEFAULT nextval('hotelmanagement.reservations_id_seq'),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     room_number INT4 NOT NULL,
     num_nights INT4 NOT NULL
 );

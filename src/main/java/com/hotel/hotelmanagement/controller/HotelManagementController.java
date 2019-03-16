@@ -22,9 +22,9 @@ public class HotelManagementController {
     @Autowired
     private HotelManagementService hotelManagementService;
 
-    @GetMapping("/")
+    @GetMapping("/ping")
     public ResponseEntity<String> index() {
-        return ResponseEntity.ok("Hello, World!");
+        return ResponseEntity.ok("pong\n");
     }
 
     @GetMapping("/reservations")

@@ -1,0 +1,24 @@
+[
+  {
+    "id": null,
+    "roomNumber": 1,
+    "guests": [
+      {
+        "firstName": "Jane",
+        "lastName": "Doe"
+      }
+    ],
+    "numNights": 2
+  },
+  {
+    "id": null,
+    "roomNumber": 2,
+    "guests": [
+      {
+        "firstName": "John",
+        "lastName": "Person"
+      }
+    ],
+    "numNights": 4
+  }
+]
