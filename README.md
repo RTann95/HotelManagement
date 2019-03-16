@@ -21,6 +21,8 @@ part into separate top-level folders (frontend/, server/, etc).
 **Note**: I'm aware of the speed (or lack thereof). If the idea of the project were to create a small application like this,
 then using a lot of this tech would just be overkill. However, the point is to use the tech; the app itself isn't as important.
 
+**IDEA: People manage via front end and then GRPC is used to communicate with backend instead of JSON**
+
 ## Local
 
 The following steps show how to test the server locally (on Mac) with a single Cockroach node.
@@ -29,7 +31,7 @@ The following steps show how to test the server locally (on Mac) with a single C
 (or `brew services start cockroach --insecure --host=localhost` to run it in the background
 (just remember to `brew services stop cockroach` when you're done)).
 2. Run `./start.sh` to compile and run the server.
-3. Curl the server via `localhost:9000`.
+3. Curl the server via `curl localhost:9000/ping`.
 
 You can see a CockroachDB Dashboard hosted [here](http://localhost:8080).
 
@@ -47,7 +49,7 @@ So, feel free to bring nodes 1 and 2 up and down as you please, but do not kill 
 1. Run `./compile.sh` to compile the server.
 2. Run `docker-compose up` to build and run the entire project.
 3. Run `docker-compose down` when done (**be sure to use `docker-compose` commands because it's stupid**).
-4. Curl the server via `localhost:9000`.
+4. Curl the server via `curl localhost:9000/ping`.
 
 You can use the same link as above to see the Cockroach Dashboard.
 
