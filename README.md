@@ -62,15 +62,12 @@ You can use the same link as above to see the Cockroach Dashboard.
 
 ## Kubernetes
 
-1. Run `kubectl apply -f kube/dashboard/dashboard.yaml` to get the Kubernetes Dashboard.
-2. Run `kubectl proxy` and it'll be available [here](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/).
-3. Run `kubectl create namespace hotel-management` if this is the first time.
-4. Run `kubectl apply -f kube/cockroach/cockroachdb.yaml` to start the CockroachDB stateful set.
-5. Run `kubectl apply -f kube/cockroach/cockroach-init.yaml` to initialize the CockroachDB cluster.
+1. Run `./kube/dashboard/apply.sh` to Start the Kubernetes dashboard and create the hotel-management namespace.
+The dashboard will be available [here](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/).
+4. Run `./kube/cockroach/apply.sh` to start a 3-node CockroachDB cluster.
 6. Run `./compile.sh` to compile the server.
 7. Run `docker-compose build web` to build the Docker image.
-8. Run `kubectl apply -f kube/web/web.yaml` to create the web server deployment.
-9. Run `kubectl get services hotel-management-web-public -n hotel-management` to fine the assigned node port (the port on the right side of the colon).
+8. Run `./kube/web/apply.sh` to create the web server deployment and get the port.
 10. Curl the server via `localhost:<node_port>/ping`.
 11. Run `kubectl port-forward cockroachdb-0 8080 -n hotel-management` to be able to see the Cockroach Dashboard via localhost.
 12. Run `kubectl delete namespaces hotel-management` to cleanup everything.
