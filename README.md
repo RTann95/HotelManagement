@@ -94,3 +94,16 @@ which defeats the purpose of this.
 * Find a better way to log into the Dashboard.
 * Find a better way to be allowed to name my own columns.
 * Deploy all parts of the app without so many kubectl commands.
+
+Useful Links:
+
+https://www.baeldung.com/spring-boot-testing
+https://github.com/eugenp/tutorials/blob/master/spring-boot/src/test/java/com/baeldung/intro/AppLiveTest.java
+https://docs.spring.io/spring-data/data-commons/docs/1.6.1.RELEASE/reference/html/repositories.html
+https://spring.io/guides/gs/testing-web/
+https://www.baeldung.com/spring-jpa-test-in-memory-database
+https://mromeh.com/2018/09/03/spring-boot-with-embedded-postgresql-for-dao-integration-unit-testing-and-local-development/
+https://spring.io/guides/gs/accessing-data-jpa/
+https://www.cockroachlabs.com/docs/stable/build-a-java-app-with-cockroachdb.html#step-3-generate-a-certificate-for-the-maxroach-user
+https://www.reddit.com/r/java/comments/97k1ql/faster_spring_boot_startup/
+https://www.cockroachlabs.com/docs/stable/secure-a-cluster.html
